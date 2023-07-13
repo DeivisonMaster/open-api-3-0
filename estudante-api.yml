@@ -1,0 +1,96 @@
+openapi: 3.0.0
+info:
+  title: API de Estudantes
+  description: API de Estudantes - Demo
+  contact:
+    name: Deivison
+    url: https://www.github.com/deivisonmaster
+  version: 1.0.0
+servers:
+  - url: http:devapi.com
+  - url: http:prodapi.com
+paths:
+  /estudante:
+    description: Estudante Recurso
+    get:
+      description: Operação para listar Estudante
+      parameters:
+        - in: query
+          name: nome
+          required: true
+          schema:
+            type: string
+            example: Teste
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/estudantes'
+    post:
+      description: Operação para adicionar Estudante
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/estudante'
+      responses:
+        201:
+          description: Sucesso ao criar Estudante
+  /estudante{id}:
+    description: Busca Estudante por Id
+    get:
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Sucesso na pesquisa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/estudante'
+components:
+  schemas:
+    estudante:
+      type: object
+      properties:
+        EstudanteID:
+          type: integer
+          example: 3
+        EstudanteNome:
+          type: string
+          example: Paulo
+        EstudanteObs:
+          type: string
+          example: Estudante com Nota alta
+    estudantes:
+      type: array
+      items:
+        properties:
+          EstudanteID:
+            type: integer
+            example: 3
+          EstudanteNome:
+            type: string
+            example: Paulo
+          EstudanteObs:
+            type: string
+            example: Estudante com Nota alta
+        
+          
+      
+            
+                
+              
+              
+              
+                      
+                      
+                    
+    
+    
